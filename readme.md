@@ -8,4 +8,5 @@ g++ Thoughtwork_homework.cpp -o code_writer_liufan
 code_writer_liufan.exe
 **linux**下运行：
 ./code_writer_liufan
-
+ 
+ 或者使用可以编译C++代码的IDE打开Thoughtwork_homework.cpp编译运行
