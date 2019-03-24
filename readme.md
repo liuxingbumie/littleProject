@@ -6,4 +6,4 @@ g++ Thoughtwork_homework.cpp -o writer_liufan
 liufan.exe
 linux下运行：
 ./liufan
----------------
+
