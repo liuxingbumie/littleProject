@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>小决定</title>
+		<style>
+			#mycanvas{
+				position: absolute;
+				transition: all 6s;
+			}
+			div{
+				width: 600px;
+				height: 600px;
+				position: relative;
+				margin: 0 auto;
+			}
+			#canvas{
+				position: absolute;
+				transform-origin: 0 0;
+				transform: translate() rotate(-90deg);
+			}
+			
+		</style>
+	</head>
+	<body>
+		<div class="canvas">
+			<canvas id="mycanvas" width="600px" height="600px" ></canvas><br />
+			<canvas id="canvas" width="600px" height="600px" ></canvas>
+		</div>
+		
+		<div style="margin: 0 auto;">
+			<input type="button" id="btn1"  value="开始" style="display: block; margin: 0 auto;" />
+		</div>
+		
+	</body>
+	<script type="text/javascript">
+		var c=document.getElementById("mycanvas")
+		var ctx=c.getContext("2d");
+		var arr=new Array("greenyellow","lawngreen","seagreen","palegreen","yellowgreen","green","grey");
+		var str=new Array("抱抱","看电影","睡觉觉","逛吃","按摩","原谅","买买买");
+		ctx.translate(300,300);    //将圆心移动到canvas的中心
+		// ctx.rotate(1/4);      //将圆盘0的位置转到箭头指向的地方
+		for(var i=0;i<str.length;i++){
+			ctx.rotate(Math.PI/180*360/str.length);
+			ctx.beginPath();
+			ctx.moveTo(0,0);
+			ctx.arc(0,0,200,0,Math.PI/180*(360/str.length));
+			ctx.lineTo(0,0);
+			// ctx.closePath();
+			ctx.fillStyle=arr[i];
+			ctx.fill();
+			
+			var txt=str[i];
+			ctx.fillStyle="orange";
+			ctx.font="20px 'Microsoft YaHei' ";
+			ctx.fillText(txt,100,60);
+			ctx.save();
+		}
+		
+		var ctx2=document.getElementById("canvas").getContext("2d");
+		ctx2.translate(300,280);
+		ctx2.beginPath();
+		ctx2.arc(0,0,10,0,2*Math.PI);
+		ctx2.fillStyle="black";
+		ctx2.fill();
+		
+		ctx2.beginPath();
+		ctx2.moveTo(0,50);
+		ctx2.lineTo(0,-150);
+		ctx2.lineWidth=5;
+		ctx2.stroke();
+		
+		var btn1=document.getElementById("btn1");
+		// btn1.addEventListener("click",start,false);
+		btn1.onclick=start;
+		function start(){
+			var timeRun=0;
+			var interval=setInterval(function(){
+				timeRun+=10;
+				c.style.transform = "rotate("+timeRun*10+"deg)"; 
+				if(timeRun>Math.random()*5000){
+					clearInterval(interval);
+				}
+			},1)
+		}
+	</script>
+</html>
